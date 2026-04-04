@@ -20,12 +20,10 @@ def create_llm(model: str = "qwen/qwen3-32b", temperature: float = 0, reasoning_
 
 
 def create_system_prompt() -> list:
+    personality = open("./personality.txt", "r").read()
+
     return [
-        SystemMessage(content="Seu nome é Kara"),
-        SystemMessage(
-            content="Você é um assistente virtual responsável por analisar "
-            "documentos e fornecer respostas precisas e úteis."
-        ),
+        SystemMessage(content=personality)
     ]
 
 
