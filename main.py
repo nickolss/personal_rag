@@ -25,7 +25,7 @@ def create_llm(model: str = "qwen/qwen3-32b", temperature: float = 0, reasoning_
     return llm
 
 
-def get_context_from_chroma(query, collection_name="rules", n_results=1):
+def get_context_from_chroma(query, collection_name="documents", n_results=2):
     client = get_chroma_client()
     collection = create_collection(client, collection_name)
     results = query_collection(collection, query, n_results)
@@ -58,7 +58,7 @@ def ask_with_rag(user_input, context=None):
 
 
 def main():
-    user_input = "Qual é seu nome? Quais são as regras do jogo?"
+    user_input = "Qual é seu nome? Quais são as regras impostas a voce?"
     context = get_context_from_chroma(user_input)
     response = ask_with_rag(user_input, context)
     print(f"Pergunta: {user_input}")
